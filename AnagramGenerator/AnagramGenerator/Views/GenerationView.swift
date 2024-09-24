@@ -23,13 +23,15 @@ struct GenerationView: View {
                 }
                 Section(header: Text("Private info")) {
                     TextField("Enter your name", text: $name)
-                        .textInputAutocapitalization(.characters)
+                        .onChange(of: name) {
+                            name = name.lowercased()  // 입력값을 소문자로 변환
+                        }
                     DatePicker("Birthday", selection: $selectedDate, displayedComponents: .date)
                         .foregroundStyle(.secondary)
                 }
                 Button {
                     if keyword != "" && name != "" {
-                        anagrams = generator.permutations(name)
+                        anagrams = generator.generateAnagrams(name)
                     }
                 } label: {
                     Text("Generate Anagrams")

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class Generator {
-    func permutations(_ str: String) -> [String] {
+    // 순열을 구하는 재귀 함수
+    func getPermutations(_ str: String) -> [String] {
         var result = [String]()
         let chars = Array(str) // 문자열을 문자 배열로 변환
         
@@ -28,6 +30,31 @@ class Generator {
         }
         
         permute([], chars) // 초기 호출
-        return result
+        return Array(Set(result))
+    }
+
+    // UITextChecker를 이용해 실제 존재하는 단어인지 확인하는 함수
+    func isRealWord(_ word: String) -> Bool {
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        return misspelledRange.location == NSNotFound
+    }
+
+    // 문자열의 순열 중 실제 존재하는 단어들을 반환하는 함수
+    func generateAnagrams(_ input: String) -> [String] {
+        let permutations = getPermutations(input)
+        var anagrams: [String] = []
+        
+        for word in permutations {
+            if isRealWord(word) && word != input {
+                anagrams.append(word)
+            }
+        }
+        
+        anagrams.sort()
+        
+        return anagrams
     }
 }
