@@ -12,6 +12,7 @@
 		C07A00DC2C9AC08800CF0CDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07A00DB2C9AC08800CF0CDF /* Assets.xcassets */; };
 		C07A00DF2C9AC08800CF0CDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07A00DE2C9AC08800CF0CDF /* Preview Assets.xcassets */; };
 		C0AA6B612C9D72B500201BA1 /* GenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AA6B602C9D72B500201BA1 /* GenerationView.swift */; };
+		C0AA6B632C9D772800201BA1 /* AnagramGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AA6B622C9D772800201BA1 /* AnagramGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		C07A00DB2C9AC08800CF0CDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C07A00DE2C9AC08800CF0CDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0AA6B602C9D72B500201BA1 /* GenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationView.swift; sourceTree = "<group>"; };
+		C0AA6B622C9D772800201BA1 /* AnagramGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				C07A00D72C9AC08700CF0CDF /* AnagramGeneratorApp.swift */,
 				C0AA6B5F2C9D725D00201BA1 /* Views */,
+				C0AA6B642C9D773B00201BA1 /* Generator */,
 				C07A00DB2C9AC08800CF0CDF /* Assets.xcassets */,
 				C07A00DD2C9AC08800CF0CDF /* Preview Content */,
 			);
@@ -76,6 +79,14 @@
 				C0AA6B602C9D72B500201BA1 /* GenerationView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C0AA6B642C9D773B00201BA1 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				C0AA6B622C9D772800201BA1 /* AnagramGenerator.swift */,
+			);
+			path = Generator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 				C07A00DA2C9AC08700CF0CDF /* ContentView.swift in Sources */,
 				C07A00D82C9AC08700CF0CDF /* AnagramGeneratorApp.swift in Sources */,
 				C0AA6B612C9D72B500201BA1 /* GenerationView.swift in Sources */,
+				C0AA6B632C9D772800201BA1 /* AnagramGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
