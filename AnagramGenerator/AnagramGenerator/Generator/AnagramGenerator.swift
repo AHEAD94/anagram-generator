@@ -9,30 +9,34 @@ import Foundation
 import UIKit
 
 class Generator {
-    // 순열을 구하는 heap 함수
+    // 순열을 구하는 backtracking 함수
     func getPermutations(_ str: String) -> [String] {
+        var result = Set<String>()
         var chars = Array(str)
-        var result: [String] = []
-
-        func generate(_ n: Int) {
-            if n == 1 {
-                result.append(String(chars))
+        chars.sort()
+        
+        func backtrack(_ path: String, _ visited: inout [Bool]) {
+            if path.count == chars.count {
+                result.insert(path)
                 return
             }
-
-            for i in 0..<n {
-                generate(n - 1)
-
-                if n % 2 == 0 {
-                    chars.swapAt(i, n - 1)
-                } else {
-                    chars.swapAt(0, n - 1)
+            
+            for i in 0..<chars.count {
+                // 이미 방문한 문자이거나, 이전 문자와 같고 이전 문자가 방문된 경우 스킵
+                if visited[i] || (i > 0 && chars[i] == chars[i - 1] && !visited[i - 1]) {
+                    continue
                 }
+                
+                visited[i] = true
+                backtrack(path + String(chars[i]), &visited)
+                visited[i] = false
             }
         }
-
-        generate(chars.count)
-        return Array(Set(result))
+        
+        var visited = [Bool](repeating: false, count: chars.count)
+        backtrack("", &visited)
+        
+        return Array(result)
     }
 
     // UITextChecker를 이용해 실제 존재하는 단어인지 확인하는 함수
