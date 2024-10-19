@@ -49,12 +49,12 @@ class Generator {
     }
 
     // 문자열의 순열 중 실제 존재하는 단어들을 반환하는 함수
-    func generateAnagrams(_ input: String) -> [String] {
+    func generateAnagrams(_ input: String, _ prevAnagrams: [String]) -> [String] {
         let permutations = getPermutations(input)
-        var anagrams: [String] = []
+        var anagrams = prevAnagrams
         
         for word in permutations {
-            if isRealWord(word) && word != input {
+            if isRealWord(word) {
                 anagrams.append(word)
             }
         }
