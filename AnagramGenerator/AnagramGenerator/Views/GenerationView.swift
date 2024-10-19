@@ -31,7 +31,8 @@ struct GenerationView: View {
                 }
                 Button {
                     if keyword != "" && name != "" {
-                        anagrams = generator.generateAnagrams(name)
+                        anagrams.removeAll()
+                        anagrams = generator.generateAnagrams(name, anagrams)
                     }
                 } label: {
                     Text("Generate Anagrams")
