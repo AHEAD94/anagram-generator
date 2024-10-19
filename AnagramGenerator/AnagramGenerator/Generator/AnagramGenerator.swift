@@ -54,7 +54,7 @@ class Generator {
         var anagrams = prevAnagrams
         
         for word in permutations {
-            if isRealWord(word) && word != input {
+            if isRealWord(word) {
                 anagrams.append(word)
             }
         }
