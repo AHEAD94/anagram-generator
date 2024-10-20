@@ -18,7 +18,15 @@ struct GenerationView: View {
     @State private var name: String = ""
     @State private var selectedDate = Date()
     
-    let maxNameLen: Int = 9
+    // 1~12 숫자를 월 이름으로 변환하는 딕셔너리
+    let monthDic: [Int: String] = [
+        1: "jan", 2: "feb", 3: "mar", 4: "apr",
+        5: "may", 6: "jun", 7: "jul", 8: "aug",
+        9: "sep", 10: "oct", 11: "nov", 12: "dec"
+    ]
+    
+    let maxInputLen: Int = 9
+    let monthLen: Int = 3
     
     var body: some View {
         NavigationView {
@@ -26,6 +34,7 @@ struct GenerationView: View {
                 Section(header: Text("Keyword")) {
                     TextField("Enter your keyword", text: $keyword)
                 }
+                
                 Section(header: Text("Private info")) {
                     TextField("Enter your name", text: $name)
                         .onChange(of: name) {
@@ -34,15 +43,27 @@ struct GenerationView: View {
                     DatePicker("Birthday", selection: $selectedDate, displayedComponents: .date)
                         .foregroundStyle(.secondary)
                 }
+                
                 Button {
-                    if keyword != "" && name != "" {
+                    if name != "" {
                         anagrams.removeAll()
                         anagrams = generator.generateAnagrams(name, anagrams)
+                        
+                        if name.count + monthLen <= maxInputLen {
+                            let calendar: Calendar = .current
+                            let component = calendar.dateComponents([.month], from: selectedDate)
+                            
+                            if let monthNumber = component.month { // optional binding으로 month를 안전하게 언래핑
+                                let monthName = monthDic[monthNumber] ?? "" // nil인 경우 빈 문자열 사용
+                                let withMonth = name + monthName
+                                anagrams = generator.generateAnagrams(withMonth, anagrams)
+                            }
+                        }
                     }
                 } label: {
                     Text("Generate Anagrams")
                 }
-                .disabled(name.count > maxNameLen)
+                .disabled(name.count > maxInputLen)
                 
                 Section(header: Text("Result anagrams")) {
                     List {
