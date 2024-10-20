@@ -55,8 +55,8 @@ struct GenerationView: View {
                             
                             if let monthNumber = component.month { // optional binding으로 month를 안전하게 언래핑
                                 let monthName = monthDic[monthNumber] ?? "" // nil인 경우 빈 문자열 사용
-                                let withMonth = name + monthName
-                                anagrams = generator.generateAnagrams(withMonth, anagrams)
+                                let nameWithMonth = name + monthName
+                                anagrams = generator.generateAnagrams(nameWithMonth, anagrams)
                             }
                         }
                     }
